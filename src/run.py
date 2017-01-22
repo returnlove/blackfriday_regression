@@ -38,21 +38,36 @@ def main():
 	print(train_data.info())
 	print(train_data['Product_ID'].head())
 
-	'''
+	
 	categorical_cols = 	["Gender","Age", "City_Category", "Stay_In_Current_City_Years"]
 
 	for col in categorical_cols:
-		data = train_data[col].append(test_data[col])
+		data = train_data[[col]].append(test_data[[col]])
 		# print('before enc')
 		# print(data[col].value_counts.index)
 		enc.fit(data)
 		# print('after enc')
 		# print(data[col].value_counts.index) # check before fit and after fit
-		temp = enc.transform(train_data[col])
-		temp = pd.DataFrame(temp, columns = [col+"_"+str(i) for i in data[col].value_counts.index])
-		print('index values' + train_data.index.values)
+		temp = enc.transform(train_data[[col]]).toarray()
+		print('temp is ####')
+		print(temp)
+		# temp = pd.DataFrame(temp, columns  = [col+"_"+str(i) for i in data[col].value_counts().index])
+		temp = pd.DataFrame(temp, columns = [col+"_"+str(i) for i in data[col].value_counts().index])
+		# print('index values' + train_data.index.values)
 		temp = temp.set_index(train_data.index.values)
-		'''
+		train_data = pd.concat([train_data,temp],axis=1)
+
+		temp = enc.transform(test_data[[col]]).toarray()
+		temp = pd.DataFrame(temp, columns = [col+"_"+str(i) for i in data[col].value_counts().index])
+		temp = temp.set_index(test_data.index.values)
+		test_data = pd.concat([test_data,temp],axis=1)
+
+
+
+	print(train_data.shape)
+	print(train_data.head())
+
+
 
 if __name__ == "__main__":
 	main()
