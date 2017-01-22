@@ -67,6 +67,31 @@ def main():
 	print(train_data.shape)
 	print(train_data.head())
 
+	x_train_col = []
+	for col in train_data.columns.values:
+		print(x_train_col.append(col))
+
+	print(x_train_col)
+	x_train_col.remove("Purchase")
+	x_train_col.remove("User_ID")	
+	x_train_col.remove("Product_ID")
+	x_train_col.remove("Product_Category_2")
+	x_train_col.remove("Product_Category_3")
+	
+
+	X_train = train_data[x_train_col]
+	y_train = train_data['Purchase']
+	
+	print(X_train.info())
+	print(y_train.head())
+	lm = LinearRegression()
+	print('model fitting..')
+	lm.fit(X_train,y_train)
+	print('model done')
+	print(dir(lm))
+	# print(lm.score())
+	print(lm.coef_)
+	print(lm.intercept_)
 
 
 if __name__ == "__main__":
