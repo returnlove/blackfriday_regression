@@ -82,6 +82,9 @@ def main():
 	X_train = train_data[x_train_col]
 	y_train = train_data['Purchase']
 	
+	X_test = test_data[x_train_col]
+	# y_test = test_data['Purchase']
+
 	print(X_train.info())
 	print(y_train.head())
 	lm = LinearRegression()
@@ -89,9 +92,15 @@ def main():
 	lm.fit(X_train,y_train)
 	print('model done')
 	print(dir(lm))
-	# print(lm.score())
+	print('R sqaured score is: ')
+	print(lm.score(X_train, y_train))
 	print(lm.coef_)
 	print(lm.intercept_)
+
+	y_test = lm.predict(X_test)
+	print(y_test[:5])
+	print(lm.score(X_test,y_test ))
+
 
 
 if __name__ == "__main__":
