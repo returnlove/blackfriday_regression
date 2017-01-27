@@ -43,17 +43,44 @@ def main():
 	cat_columns.remove('Product_ID')
 	print(cat_columns)
 
+	train_data_new = pd.DataFrame()
+
 	for col in cat_columns:
 		var = col+"_dummy"
 		var = pd.get_dummies(train_data[col], prefix = col).iloc[:,1:]
-		print(var.head())
+		# print(var.head())
+		train_data_new = pd.concat([train_data_new, var], axis = 1)
+		# train_data_new.append()
+
+	print('train data new ')
+	print(train_data_new.info())
 	# Gender_dummy = pd.get_dummies(train_data['Gender'], prefix = 'gender').iloc[:,1:]
 	# print(Gender_dummy)
 
 	# print(create_var_name('hello'))
 	# print(to_dummy(cat_columns[2]))
 
-	
+	# check train columns names
+	print('train_data####')
+	print(train_data.info())
+
+	new_cols = train_data_new.columns.values
+	old_cols = train_data.columns.values
+
+	print(new_cols)
+	print(old_cols)	
+	train_data_new = pd.concat([train_data_new, train_data['Marital_Status']], axis = 1)
+	print(train_data_new.columns.values)
+
+	x_train = train_data_new
+	y_train = train_data['Purchase']
+
+	model = LinearRegression()
+	model.fit(x_train, y_train)
+	print('R sqaured score is: ')
+
+	print(model.score(x_train, y_train))
+
 
 if __name__ == "__main__":
 	main()

@@ -1,0 +1,20 @@
+run.py
+
+used label encoding and one hot encoding
+
+for one hot encoding the data should be int not string, so use label encoding to convert to ints and then use one hot to convert them to dummy
+
+strings >> LE >> int >> One Hot encoding >> dummy
+
+R sqaured score is: 
+0.124998877824
+
+
+
+lr_follow.py
+
+# used pandas get dummy
+
+R sqaured score is: 
+0.640103970689
+

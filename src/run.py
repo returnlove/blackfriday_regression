@@ -94,12 +94,12 @@ def main():
 	print(dir(lm))
 	print('R sqaured score is: ')
 	print(lm.score(X_train, y_train))
-	print(lm.coef_)
-	print(lm.intercept_)
+	# print(lm.coef_)
+	# print(lm.intercept_)
 
-	y_test = lm.predict(X_test)
-	print(y_test[:5])
-	print(lm.score(X_test,y_test ))
+	# y_test = lm.predict(X_test)
+	# print(y_test[:5])
+	# print(lm.score(X_test,y_test ))
 
 
 
