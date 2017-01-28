@@ -97,11 +97,20 @@ def main():
 	# print(lm.coef_)
 	# print(lm.intercept_)
 
-	# y_test = lm.predict(X_test)
+	y_test = lm.predict(X_test)
+	y_test = pd.DataFrame(y_test, columns = ['Purchase'])
 	# print(y_test[:5])
 	# print(lm.score(X_test,y_test ))
 
+	submission_file = pd.DataFrame()
+	submission_file = pd.concat([test_data[['User_ID', 'Product_ID']], y_test], axis = 1)
+			# test_data = pd.concat([test_data,temp],axis=1)
 
+	print(submission_file.head())
+
+	submission_file = pd.DataFrame(submission_file, columns = ["User_ID","Product_ID","Purchase"])
+
+	submission_file.to_csv('submission.csv', index = False)
 
 if __name__ == "__main__":
 	main()

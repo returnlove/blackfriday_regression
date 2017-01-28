@@ -18,3 +18,9 @@ lr_follow.py
 R sqaured score is: 
 0.640103970689
 
+
+uploading run.py submission but gives error about headers
+
+to-do:
+modify lr_follow.py ==> club train and test data together to and then convert to dummies. Now it is creating dummies in train data only
+
